@@ -12,7 +12,7 @@ const cookieParser = require("cookie-parser");
 const ejsMate = require("ejs-mate");
 const axios = require("axios");
 const session = require("express-session");
-const MongoStore = require("connect-mongo");
+const {MongoStore} = require("connect-mongo");
 const flash=require("connect-flash");
 const passport=require("passport");
 const localstrategy=require("passport-local");
@@ -57,7 +57,7 @@ const store=MongoStore.create({
   touchafter:24*3600
 });
 
-store.on("error",()=>{
+store.on("error",(err)=>{
   console.log("ERROR IN MONGO SESSION",err);
 });
 
