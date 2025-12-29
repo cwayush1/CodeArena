@@ -47,7 +47,6 @@ mongoose.connection.on("connected", () => {
   console.log("Connected to DB:", mongoose.connection.name);
 });
 
-const port = 1000;
 
 const store=MongoStore.create({
   mongoUrl:dburl,
@@ -213,6 +212,7 @@ app.get("/api/codearena/:username",async(req,res)=>{
   }
 });
 
+const port=process.env.PORT|| 3000;
 app.listen(port, () => {
   console.log(`app is listening to port ${port}`);
 });
