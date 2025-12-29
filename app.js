@@ -151,7 +151,7 @@ app.post("/signup",wrapAsync(async(req,res)=>{
         if (err) {
             return next(err);
         }
-        res.redirect("/api/codearena/myprofile");
+        res.redirect("/api/codearena");
     });
 } catch (e) {
     req.flash("error", e.message);
