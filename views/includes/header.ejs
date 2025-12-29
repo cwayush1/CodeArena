@@ -1,0 +1,79 @@
+<!-- <nav class="navbar navbar-expand-lg bg-body-tertiary navi sticky-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#"><img src="/assets/Screenshot 2025-12-22 230225.png"alt="logo" class="w">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link active" aria-current="page" href="#">My Profile</a>
+        <a class="nav-link" href="https://www.tle-eliminators.com/cp-sheet">CP-31 Sheet</a>
+        <a class="nav-link" href="https://takeuforward.org/dsa/strivers-a2z-sheet-learn-dsa-a-to-z">Striver's DSA Sheet</a>
+      </div>
+    </div>
+  </div>
+</nav> -->
+
+<nav class="navbar navbar-expand-lg fixed-top custom-navbar">
+  <div class="container-fluid align-items-center">
+    <div class="header-logo">
+      <img src="/assets/gg.png" alt="CodeArena Logo" class="navbar-logo" />
+      <span class="ww">CodeArena</span>
+    </div>
+
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto align-items-center gap-3">
+        <li class="nav-item">
+          <a class="nav-link" href="/api/codearena">Home</a>
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="https://www.tle-eliminators.com/cp-sheet"
+            target="_blank"
+            >CP-31 Sheet</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="https://takeuforward.org/dsa/strivers-a2z-sheet-learn-dsa-a-to-z"
+            target="_blank"
+            >Striver's DSA</a
+          >
+        </li>
+
+        <li class="nav-item">
+          <%if(curuser){%>
+          <a
+            class="nav-link btn-profile"
+            href="<%= curuser ? '/api/codearena/' + curuser.username : '/login' %>"
+          >
+            <i class="fas fa-user-circle"></i> My Profile
+          </a>
+          <%}else{%>
+            <a
+            class="nav-link btn-profile"
+            href="/signup"
+          >
+            <i class="fas fa-user-circle"></i> &nbsp;SignUp
+          </a>
+            <%}%>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

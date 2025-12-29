@@ -1,0 +1,46 @@
+<% layout("/layout/boilerplate") %>
+
+<div class="auth-container">
+    <div class="auth-card">
+        <h2>Welcome Back</h2>
+        <p>Login to continue your coding journey</p>
+        
+        <form action="/login" method="POST" novalidate class="needs-validation">
+            <div class="form-group">
+                <label for="username"class="form-label">Username</label>
+                <input type="text" id="username" name="username" class="form-control-custom" placeholder="Enter your username" required>
+                <div class="invalid-feedback">Please enter valid Username</div>
+            </div>
+            
+            <div class="form-group">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" id="password" name="password" class="form-control-custom" placeholder="Enter your password" required>
+                <div class="invalid-feedback">Please enter valid data</div>
+            </div>
+            
+            <button type="submit" class="btn-auth">Login</button>
+        </form>
+        
+        <div class="auth-footer">
+            Don't have an account? <a href="/signup">Sign Up</a>
+        </div>
+    </div>
+</div>
+
+<script>
+(() => {
+  'use strict';
+
+  const forms = document.querySelectorAll('.needs-validation');
+
+  forms.forEach(form => {
+    form.addEventListener('submit', event => {
+      if (!form.checkValidity()) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+      form.classList.add('was-validated');
+    });
+  });
+})();
+</script>

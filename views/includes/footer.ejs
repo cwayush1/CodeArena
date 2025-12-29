@@ -1,0 +1,66 @@
+<footer class="main-footer">
+  <div class="footer-container">
+    <div class="footer-tagline">
+      <strong>"Push your limits,</strong><br />
+      <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Not just commits"</strong>
+    </div>
+
+    <div class="footer-center">
+      <div class="footer-logo">
+        <img src="/assets/gg.png" alt="CodeArena Logo" />
+        <span class="qq">CodeArena</span>
+      </div>
+      <br />
+      <div class="footer-copyright">
+        <p>
+          &copy; <%= new Date().getFullYear() %> CodeArena. All rights reserved.
+        </p>
+        <p>
+          Made with <span style="color: #e25555">&hearts;</span> for coders.
+        </p>
+      </div>
+    </div>
+
+    <button id="scrollToTopBtn" title="Go to top">&#8679;</button>
+  </div>
+</footer>
+
+<script>
+
+  const scrollBtn = document.getElementById("scrollToTopBtn");
+
+  window.onscroll = function () {
+    if (
+      document.body.scrollTop > 100 ||
+      document.documentElement.scrollTop > 100
+    ) {
+      scrollBtn.classList.add("show");
+    } else {
+      scrollBtn.classList.remove("show");
+    }
+  };
+
+  scrollBtn.onclick = function () {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+</script>
+
+<script>
+ 
+  const scrollBtn = document.getElementById("scrollToTopBtn");
+
+  window.onscroll = function () {
+    if (
+      document.body.scrollTop > 100 ||
+      document.documentElement.scrollTop > 100
+    ) {
+      scrollBtn.classList.add("show");
+    } else {
+      scrollBtn.classList.remove("show");
+    }
+  };
+
+  scrollBtn.onclick = function () {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+</script>

@@ -1,0 +1,243 @@
+<% layout("/layout/boilerplate") %>
+
+<div class="profile-title">
+  <h2><i class="fas fa-user-astronaut"></i> My Coding Journey</h2>
+  <p>Track your progress across all major platforms</p>
+</div>
+
+<div class="profile-grid">
+
+  <div class="profile-card col-8 col-sm-8 col-lg-6 mx-auto">
+    <div class="card-header" onclick="toggleCard(this)">
+      <div class="header-left">
+        <img src="/assets/Screenshot 2025-12-26 162049.png" alt="Codeforces" class="pf-logo" />
+      </div>
+      <div class="arrow-icon"><i class="fas fa-chevron-down"></i></div>
+    </div>
+
+    <div class="card-body">
+      <% if(curuser.codeforceprofile) { %>
+        <div id="view-cf" class="stats-container">
+          <% if(apiData.cf && apiData.cf.status === "OK") { %>
+              <div class="stat-row handle-row"><span class="stat-label">Handle</span><span class="stat-value"><%= apiData.cf.handle %></span></div>
+              <div class="stat-row"><span class="stat-label">Rank</span><span class="stat-value"><%= apiData.cf.rank %></span></div>
+              <div class="stat-row rating-row"><span class="stat-label">Current Rating</span><span class="stat-value"><%= apiData.cf.rating %></span></div>
+              <div class="stat-row"><span class="stat-label">Max. Rating</span><span class="stat-value"><%= apiData.cf.maxRating %></span></div>
+              
+              <div class="update-action-wrapper">
+                <button class="btn-outline-update" onclick="toggleEdit('cf')"><i class="fas fa-edit"></i> Update Handle</button>
+              </div>
+          <% } else { %>
+              <div class="api-error">
+                <i class="fas fa-exclamation-triangle"></i>
+                <p>Could not load data for <b><%= curuser.codeforceprofile %></b>. <a href="javascript:void(0)" onclick="toggleEdit('cf')">Edit Handle</a></p>
+              </div>
+          <% } %>
+        </div>
+
+        <div id="edit-cf" class="add-profile-container" style="display: none;">
+            <p class="add-profile-text">Update Codeforces Handle</p>
+            <form action="/user/add-handle" method="POST">
+                <input type="hidden" name="platform" value="codeforceprofile">
+                <input type="text" name="handle" class="handle-input" value="<%= curuser.codeforceprofile %>" >
+                <div class="form-button-group">
+                  <button type="submit" class="btn-save-handle">Save Changes</button>
+                  <button type="button" class="btn-cancel-small" onclick="toggleEdit('cf')">Cancel</button>
+                </div>
+            </form>
+        </div>
+      <% } else { %>
+        <div class="add-profile-container">
+            <p class="add-profile-text">Connect your CodeForces account</p>
+            <form action="/user/add-handle" method="POST">
+                <input type="hidden" name="platform" value="codeforceprofile">
+                <input type="text" name="handle" class="handle-input" placeholder="Enter Codeforces Handle" >
+                <button type="submit" class="btn-save-handle">Connect Profile</button>
+            </form>
+        </div>
+      <% } %>
+    </div>
+  </div>
+
+  <div class="profile-card col-8 col-sm-8 col-lg-6 mx-auto">
+    <div class="card-header" onclick="toggleCard(this)">
+      <div class="header-left">
+        <img src="https://cdn.codechef.com/images/cc-logo.svg" alt="CodeChef" class="pf-logo" />
+      </div>
+      <div class="arrow-icon"><i class="fas fa-chevron-down"></i></div>
+    </div>
+
+    <div class="card-body">
+      <% if(curuser.codechefprofile) { %>
+        <div id="view-cc" class="stats-container">
+          <% if(apiData.cc && apiData.cc.status === "OK") { %>
+              <div class="stat-row handle-row"><span class="stat-label">Handle</span><span class="stat-value"><%= apiData.cc.handle %></span></div>
+              <div class="stat-row rating-row"><span class="stat-label">Rating</span><span class="stat-value"><%= apiData.cc.rating %></span></div>
+              <div class="stat-row"><span class="stat-label">Global Rank</span><span class="stat-value">#<%= apiData.cc.rank %></span></div>
+              <div class="stat-row"><span class="stat-label">Stars</span><span class="stat-value" style="color: #f59e0b;"><%= apiData.cc.extra %></span></div>
+              <div class="stat-row"><span class="stat-label">Solved</span><span class="stat-value"><%= apiData.cc.solved %></span></div>
+              <div class="update-action-wrapper">
+                <button class="btn-outline-update" onclick="toggleEdit('cc')"><i class="fas fa-edit"></i> Update Handle</button>
+              </div>
+          <% } else { %>
+              <div class="api-error">
+                <i class="fas fa-exclamation-triangle"></i>
+                <p>Could not load data for <b><%= curuser.codechefprofile %></b>. <a href="javascript:void(0)" onclick="toggleEdit('cc')">Edit Handle</a></p>
+              </div>
+          <% } %>
+        </div>
+
+        <div id="edit-cc" class="add-profile-container" style="display: none;">
+            <p class="add-profile-text">Update CodeChef Handle</p>
+            <form action="/user/add-handle" method="POST">
+                <input type="hidden" name="platform" value="codechefprofile">
+                <input type="text" name="handle" class="handle-input" value="<%= curuser.codechefprofile %>" >
+                <div class="form-button-group">
+                  <button type="submit" class="btn-save-handle">Save Changes</button>
+                  <button type="button" class="btn-cancel-small" onclick="toggleEdit('cc')">Cancel</button>
+                </div>
+            </form>
+        </div>
+      <% } else { %>
+        <div class="add-profile-container">
+            <p class="add-profile-text">Connect your CodeChef account.</p>
+            <form action="/user/add-handle" method="POST">
+                <input type="hidden" name="platform" value="codechefprofile">
+                <input type="text" name="handle" class="handle-input" placeholder="Enter CodeChef Handle" >
+                <button type="submit" class="btn-save-handle">Connect Profile</button>
+            </form>
+        </div>
+      <% } %>
+    </div>
+  </div>
+
+  <div class="profile-card col-8 col-sm-8 col-lg-6 mx-auto">
+    <div class="card-header" onclick="toggleCard(this)">
+      <div class="header-left">
+        <img src="/assets/image.png" alt="LeetCode" class="pf-logo" />
+      </div>
+      <div class="arrow-icon"><i class="fas fa-chevron-down"></i></div>
+    </div>
+
+    <div class="card-body">
+      <% if(curuser.leetcodeprofile) { %>
+        <div id="view-lc" class="stats-container">
+          <% if(apiData.lc && apiData.lc.status === "OK") { %>
+              <div class="stat-row handle-row"><span class="stat-label">Handle</span><span class="stat-value"><%= apiData.lc.handle %></span></div>
+              <div class="stat-row rating-row"><span class="stat-label">Total Solved</span><span class="stat-value"><%= apiData.lc.solved %></span></div>
+              <div class="stat-row"><span class="stat-label">Ranking</span><span class="stat-value"><%= apiData.lc.rank %></span></div>
+              <div class="update-action-wrapper">
+                <button class="btn-outline-update" onclick="toggleEdit('lc')"><i class="fas fa-edit"></i> Update Handle</button>
+              </div>
+          <% } else { %>
+              <div class="api-error">
+                <i class="fas fa-exclamation-triangle"></i>
+                <p>Could not load data for <b><%= curuser.leetcodeprofile %></b>. <a href="javascript:void(0)" onclick="toggleEdit('lc')">Edit Handle</a></p>
+              </div>
+          <% } %>
+        </div>
+
+        <div id="edit-lc" class="add-profile-container" style="display: none;">
+            <p class="add-profile-text">Update LeetCode Username</p>
+            <form action="/user/add-handle" method="POST">
+                <input type="hidden" name="platform" value="leetcodeprofile">
+                <input type="text" name="handle" class="handle-input" value="<%= curuser.leetcodeprofile %>" >
+                <div class="form-button-group">
+                  <button type="submit" class="btn-save-handle">Save Changes</button>
+                  <button type="button" class="btn-cancel-small" onclick="toggleEdit('lc')">Cancel</button>
+                </div>
+            </form>
+        </div>
+      <% } else { %>
+        <div class="add-profile-container">
+            <p class="add-profile-text">Connect your LeetCode account</p>
+            <form action="/user/add-handle" method="POST">
+                <input type="hidden" name="platform" value="leetcodeprofile">
+                <input type="text" name="handle" class="handle-input" placeholder="Enter LeetCode Username" >
+                <button type="submit" class="btn-save-handle">Connect Profile</button>
+            </form>
+        </div>
+      <% } %>
+    </div>
+  </div>
+
+  <div class="profile-card col-8 col-sm-8 col-lg-6 mx-auto">
+    <div class="card-header" onclick="toggleCard(this)">
+      <div class="header-left">
+        <img src="/assets/Screenshot 2025-12-22 193000.png" alt="AtCoder" class="pf-logo" />
+      </div>
+      <div class="arrow-icon"><i class="fas fa-chevron-down"></i></div>
+    </div>
+
+    <div class="card-body">
+      <% if(curuser.atcoderprofile) { %>
+        <div id="view-ac" class="stats-container">
+          <% if(apiData.ac && apiData.ac.status === "OK") { %>
+              <div class="stat-row handle-row"><span class="stat-label">Handle</span><span class="stat-value"><%= apiData.ac.handle %></span></div>
+              <div class="stat-row rating-row"><span class="stat-label">Rating</span><span class="stat-value"><%= apiData.ac.rating %></span></div>
+              <div class="stat-row"><span class="stat-label">Max Rating</span><span class="stat-value"><%= apiData.ac.maxRating %></span></div>
+              <div class="stat-row"><span class="stat-label">Rank</span><span class="stat-value"><%= apiData.ac.rank %></span></div>
+              <div class="update-action-wrapper">
+                <button class="btn-outline-update" onclick="toggleEdit('ac')"><i class="fas fa-edit"></i> Update Handle</button>
+              </div>
+          <% } else { %>
+              <div class="api-error">
+                <i class="fas fa-exclamation-triangle"></i>
+                <p>Could not load data for <b><%= curuser.atcoderprofile %></b>. <a href="javascript:void(0)" onclick="toggleEdit('ac')">Edit Handle</a></p>
+              </div>
+          <% } %>
+        </div>
+
+        <div id="edit-ac" class="add-profile-container" style="display: none;">
+            <p class="add-profile-text">Update AtCoder Handle</p>
+            <form action="/user/add-handle" method="POST">
+                <input type="hidden" name="platform" value="atcoderprofile">
+                <input type="text" name="handle" class="handle-input" value="<%= curuser.atcoderprofile %>" >
+                <div class="form-button-group">
+                  <button type="submit" class="btn-save-handle">Save Changes</button>
+                  <button type="button" class="btn-cancel-small" onclick="toggleEdit('ac')">Cancel</button>
+                </div>
+            </form>
+        </div>
+      <% } else { %>
+         <div class="add-profile-container">
+            <p class="add-profile-text">Connect your AtCoder account</p>
+            <form action="/user/add-handle" method="POST">
+                <input type="hidden" name="platform" value="atcoderprofile">
+                <input type="text" name="handle" class="handle-input" placeholder="Enter AtCoder Handle" >
+                <button type="submit" class="btn-save-handle">Connect Profile</button>
+            </form>
+        </div>
+      <% } %>
+    </div>
+  </div>
+<div class="logout-wrapper">
+    <form action="/logout" method="GET">
+      <button type="submit" class="btn-logout">
+        <i class="fas fa-sign-out-alt"></i> Log Out
+      </button>
+    </form>
+  </div>
+
+</div>
+</div>
+
+
+<script>
+  function toggleCard(header) {
+    header.parentElement.classList.toggle("active");
+  }
+
+  function toggleEdit(platformId) {
+    const viewSection = document.getElementById(`view-${platformId}`);
+    const editSection = document.getElementById(`edit-${platformId}`);
+    
+    if (viewSection.style.display === "none") {
+      viewSection.style.display = "block";
+      editSection.style.display = "none";
+    } else {
+      viewSection.style.display = "none";
+      editSection.style.display = "block";
+    }
+  }
+</script>

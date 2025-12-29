@@ -1,0 +1,1133 @@
+/* --- Global Resets & Body --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #333;
+    color: #333;
+    line-height: 1.6;  
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x:hidden;
+    width:100%;
+    min-height:100vh;
+}
+
+/* --- Main Container --- */
+
+/* .main-container {
+   font-family: 'Plus Jakarta Sans', sans-serif;
+    color: #333;
+    line-height: 1.6;
+
+    background-color: #0f172a; 
+    background-image: linear-gradient(to bottom, #0f172a 0%, #1e1b4b 100%);
+
+    background-attachment: fixed;
+
+    padding-top: 60px; 
+    padding-bottom: 80px; 
+
+    display: flex;
+    flex:1;
+    flex-direction: column;
+}
+/* =========================================
+   1. MAIN CONTAINER (Deep Blue + Glowing Orbs)
+   ========================================= */
+.main-container {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    color: #e2e8f0; 
+    line-height: 1.6;
+
+    /* Base Gradient */
+    background: linear-gradient(to bottom, #0f172a 0%, #1e1b4b 100%);
+    background-attachment: fixed;
+
+    /* Layout */
+    padding-top: 60px; 
+    padding-bottom: 80px; 
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    min-height: 100vh;
+    
+    position: relative;
+    overflow: hidden; 
+}
+
+/* =========================================
+   2. LAYER 1: Large Glowing Orbs (Slow)
+   ========================================= */
+.main-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    /* Bigger, brighter bubbles with a glow */
+    background-image: 
+        radial-gradient(circle at 15% 50%, rgba(56, 189, 248, 0.15) 0%, transparent 50px),
+        radial-gradient(circle at 75% 20%, rgba(139, 92, 246, 0.15) 0%, transparent 60px),
+        radial-gradient(circle at 85% 80%, rgba(56, 189, 248, 0.15) 0%, transparent 50px);
+        
+    /* Spacing between repetitions */
+    background-size: 800px 800px; 
+    
+    /* Slow floating animation */
+    animation: bubbleFloat 30s linear infinite;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* =========================================
+   3. LAYER 2: Medium Moving Bubbles (Faster)
+   ========================================= */
+.main-container::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    /* Brighter, sharper bubbles */
+    background-image: 
+        radial-gradient(circle at 25% 85%, rgba(255, 255, 255, 0.1) 0%, transparent 30px),
+        radial-gradient(circle at 50% 50%, rgba(56, 189, 248, 0.12) 0%, transparent 25px),
+        radial-gradient(circle at 90% 10%, rgba(255, 255, 255, 0.1) 0%, transparent 30px);
+        
+    background-size: 600px 600px;
+    
+    /* Faster animation creates depth */
+    animation: bubbleFloat 20s linear infinite;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* =========================================
+   4. ANIMATION KEYFRAMES
+   ========================================= */
+@keyframes bubbleFloat {
+    from {
+        background-position: 0% 100%; /* Start at bottom */
+    }
+    to {
+        background-position: 0% 0%; /* Float to top */
+    }
+}
+
+/* =========================================
+   5. CONTENT CONTAINER
+   ========================================= */
+.container {
+    flex: 1;
+    padding-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    position: relative;
+    z-index: 1; /* Keeps content strictly ABOVE background */
+    /* width: */
+}
+
+/* --- Platform Section Styling --- */
+.platform {
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+}
+
+/* Header Flexbox for Logo + Text */
+.platform h2 {
+    font-size: 1.8rem;
+    padding: 20px 30px;
+    color: white;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+/* Logo Sizing */
+.platform h2 img {
+    height:6rem; /* Limits the logo height */
+    width: 30%;  /* Maintains aspect ratio */
+    object-fit: contain;
+    background: white; /* Adds a small white backing for transparency */
+    padding: 2px;
+    border-radius: 8px; /* Slightly rounded corners for the logo box */
+}
+
+
+/* --- Cards Container (The Changed Part) --- */
+.cards-container {
+    /* Changed from Flex/Scroll to Grid */
+    display: grid; 
+    /* This automatically fits as many 280px cards as possible, then wraps to new line */
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
+    gap: 25px;
+    padding-left:15px;
+    padding-right:30px;
+    padding-bottom:20px;
+}
+
+/* --- Individual Contest Card --- */
+.card {
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    transition: all 0.20s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content:space-between;
+    border: 1px solid #eee;
+    height: 200px; 
+}
+.card:hover {
+    border-color: rgba(56, 189, 248, 0.3); /* Blue glow border */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+}
+.card h3 {
+    font-size: 1.15rem;
+    margin-bottom: 12px;
+    color: #2c3e50;
+    font-weight: 700;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.card p {
+    font-size: 0.80rem;
+    color: #7f8c8d;
+    margin-bottom: auto;
+    font-weight: 500;
+}
+
+/* --- Button Styling --- */
+.contest-btn {
+    display: inline-block;
+    padding: 12px 0;
+    width: 100%;
+    /* background: linear-gradient(to right, #3498db, #2980b9); */
+    /* background: linear-gradient(90deg, #4facfe, #9b59ff); */
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+    margin-top: 20px;
+}
+
+.contest-btn:hover {
+    /* background: linear-gradient(135deg, #2563eb, #1d4ed8); */
+     background: linear-gradient(90deg, #4facfe, #9b59ff);
+    box-shadow: 0 6px 15px rgba(37, 99, 235, 0.5);
+    transform: translateY(-1px);
+}
+/* --- Mobile Responsive Logo Size --- */
+@media (max-width: 768px) {
+    .platform h2 {
+        justify-content:center;    }
+
+    .platform h2 img {
+        width: 100%;      /* 👈 as you wanted */
+        height:3rem;    /* keeps aspect ratio */
+    }
+}
+.w{
+    height:4rem;
+}
+/* ===== FOOTER BASE ===== */
+.main-footer {
+    background: #020617;  
+    color: #94a3b8;
+    border-top: 1px solid rgba(56, 189, 248, 0.2); 
+    box-shadow: 0 -5px 20px rgba(0,0,0,0.3);
+}
+
+.footer-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin:auto;
+    padding-top:3rem;
+    text-align:center;
+}
+
+/* ===== LEFT TAGLINE ===== */
+.footer-tagline {
+    position: absolute;
+    left:1.5rem;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.4;
+    /* padding-left:2rem;
+    padding-right:1rem; */
+}
+
+.footer-tagline p {
+    margin: 0;
+}
+.footer-tagline strong{
+     font-size: 1.6rem;
+    font-weight: 700;
+    background: linear-gradient(90deg, #4facfe, #9b59ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* ===== CENTER LOGO ===== */
+
+.qq{
+    font-size: 1.6rem;
+    font-weight: 700;
+    background: linear-gradient(90deg, #4facfe, #9b59ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.ww{
+    font-size: 2rem;
+    font-weight: 700;
+    background: linear-gradient(90deg, #4facfe, #9b59ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.footer-center {
+    display: flex;
+    flex-direction: column; /* 👈 forces new line */
+    align-items: center;
+    gap: 6px;
+}
+
+/* Keep logo inline */
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.footer-logo img {
+    height:3rem;
+    width: 4rem;
+}
+.header-logo img {
+    height:3.4rem;
+    width: 4.2rem;
+}
+
+/* Copyright styling */
+.footer-copyright {
+    font-size: 0.85rem;
+    color: #aaa;
+    text-align: center;
+    padding-bottom:2rem;
+}
+.footer-copyright p{
+    line-height:1.2;
+    margin:2px 0;
+     text-align: center;
+    opacity: 0.9;
+}
+/* ===== SCROLL TO TOP BUTTON ===== */
+#scrollToTopBtn {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background: linear-gradient(135deg, #4facfe, #9b59ff);
+    color: white;
+    border: none;
+    padding: 12px 14px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    height:3rem;
+    width:3rem;
+    z-index: 1;
+}
+
+#scrollToTopBtn.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+#scrollToTopBtn:hover {
+    transform: translateY(-3px);
+}
+
+/* ===== MOBILE RESPONSIVE ===== */
+@media (max-width:850px) {
+    .footer-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    /* .footer-tagline, */
+    .footer-copyright {
+        position: static;
+        text-align: center;
+    }
+
+    .footer-tagline strong{
+    /* font-size: 1rem;
+    font-weight:300;
+    background: linear-gradient(90deg, #4facfe, #9b59ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; */
+    display:none;
+}
+
+}
+/* --- Professional Navbar Styling --- */
+
+/* 1. Glassmorphism Background */
+
+.custom-navbar {
+    background: #020617; /* Dark, slightly transparent */
+    padding:2px 0;
+    transition: all 0.3s ease;
+     border-bottom: 1px solid rgba(56, 189, 248, 0.2); 
+    box-shadow: 0 -5px 20px rgba(0,0,0,0.3);
+
+    margin-bottom: 0 !important;
+}
+
+/* 2. Logo Styling */
+.header-logo {
+    height: 60px;
+    width: auto;
+    display:flex;
+    align-items: center;
+    border-radius: 6px;
+    /* Optional: Glow effect for logo */
+    /* filter: drop-shadow(0 0 5px rgba(52, 152, 219, 0.5)); */
+}
+
+.brand-text {
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin-left: 10px;
+    background: linear-gradient(to right, #3498db, #9b59b6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    vertical-align: middle;
+}
+
+/* 3. Navigation Links */
+.navbar-nav .nav-link {
+    color: #ecf0f1 !important;
+    font-weight: 500;
+    font-size: 1rem;
+    position: relative;
+    padding: 5px 0;
+    margin: 0 10px;
+    transition: color 0.3s ease;
+}
+
+/* Animated Underline Effect */
+.navbar-nav .nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(to right, #3498db, #9b59b6);
+    transition: width 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover::after {
+    width: 100%;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #fff !important;
+}
+
+/* 4. Profile Button (Distinct CTA Style) */
+.btn-profile {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    padding: 8px 20px !important; /* Override default nav padding */
+    border-radius: 20px;
+    color: white !important;
+    font-weight: 600 !important;
+    box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+    border: 1px solid transparent;
+}
+
+/* Remove underline animation for the button */
+.btn-profile::after {
+    display: none; 
+}
+
+.btn-profile:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(52, 152, 219, 0.5);
+    background: linear-gradient(135deg, #2980b9, #3498db);
+}
+/* 1. Base Toggler Button Styling */
+.navbar-toggler {
+    border: none;
+    background-color: transparent !important;
+    padding: 0.25rem 0.5rem;
+    transition: transform 0.3s ease; /* Adds a nice little spin effect */
+}
+
+/* Remove the ugly outline when clicked */
+.navbar-toggler:focus {
+    box-shadow: none; 
+    outline: none;
+}
+
+/* 2. Default Icon (Hamburger Lines) - When Menu is CLOSED */
+.navbar-toggler-icon {
+    width: 30px;
+    height: 30px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+    
+    /* Hamburger Icon SVG (White) */
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='white' stroke-width='3' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E") !important;
+    
+    transition: background-image 0.3s ease-in-out;
+}
+
+/* 3. Active Icon (Cross Sign) - When Menu is OPEN */
+/* Bootstrap adds aria-expanded="true" when the menu opens */
+.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
+    /* Cross (X) Icon SVG (White) */
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='white' stroke-width='3' stroke-linecap='round' stroke-miterlimit='10' d='M6 6L24 24M24 6L6 24'/%3E%3C/svg%3E") !important;
+    
+    /* Optional: Rotate the X slightly for a cool effect */
+    transform: rotate(90deg);
+}
+
+/* Optional: Rotate the button itself when opening */
+.navbar-toggler[aria-expanded="true"] {
+    transform: rotate(90deg);
+}
+
+/* Fix for body content hiding behind fixed navbar */
+body {
+    padding-top: 60px; /* Pushes content down so navbar doesn't cover it */
+}
+
+/* =========================================
+   6. AUTH PAGES (Login / Sign Up)
+   ========================================= */
+
+/* Center the form on the page */
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh; /* Ensures it sits in the middle vertically */
+    padding: 20px;
+}
+
+/* Glassmorphism Auth Card */
+.auth-card {
+    background: rgba(30, 41, 59, 0.4); /* Frosted Slate */
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    padding: 40px;
+    width: 100%;
+    max-width: 420px;
+    
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    z-index: 10;
+}
+
+/* Optional: Top Highlight Line */
+.auth-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #4facfe, #9b59ff);
+}
+
+/* Auth Titles */
+.auth-card h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.auth-card p {
+    color: #94a3b8;
+    margin-bottom: 30px;
+    font-size: 0.95rem;
+}
+
+/* Input Group Styling */
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    color: #cbd5e1;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.form-control-custom {
+    width: 100%;
+    background: rgba(15, 23, 42, 0.6); /* Darker input bg */
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    padding: 12px 16px;
+    border-radius: 12px;
+    color: #fff;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+/* Input Focus State (Neon Glow) */
+.form-control-custom:focus {
+    background: rgba(15, 23, 42, 0.8);
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15);
+}
+
+/* Placeholder Color */
+.form-control-custom::placeholder {
+    color: #64748b;
+}
+
+/* Auth Button */
+.btn-auth {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+    box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+}
+
+.btn-auth:hover {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(37, 99, 235, 0.5);
+}
+
+/* Bottom Links */
+.auth-footer {
+    margin-top: 25px;
+    font-size: 0.9rem;
+    color: #94a3b8;
+}
+
+.auth-footer a {
+    color: #60a5fa;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+
+.auth-footer a:hover {
+    color: #93c5fd;
+    text-decoration: underline;
+}
+
+
+
+/* Status Base */
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 800;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+}
+
+/* LIVE State */
+.status.live {
+  color: #dc2626; /* red */
+}
+
+/* Blinking Dot */
+.live-dot {
+  width: 10px;
+  height: 10px;
+  background-color: #dc2626;
+  border-radius: 50%;
+  animation: blink 1.2s infinite;
+  box-shadow: 0 0 8px rgba(220, 38, 38, 0.9);
+}
+
+/* Blink Animation */
+@keyframes blink {
+  0%   { opacity: 1; }
+  50%  { opacity: 0.3; }
+  100% { opacity: 1; }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* =========================================
+   PROFILE PAGE (Vertical Flex Layout)
+   ========================================= */
+
+/* 1. Page Title */
+.profile-title {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.profile-title h2 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    background: linear-gradient(90deg, #4facfe, #9b59ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 10px;
+}
+
+.profile-title p {
+    color: #94a3b8;
+    font-size: 1.1rem;
+}
+
+.profile-grid {
+    flex: 1;
+    padding-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    position: relative;
+    z-index: 1; 
+}
+
+.profile-card {
+    background: #ffffff;
+    border-radius: 28px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+    overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.profile-card:hover {
+    box-shadow: 0 18px 40px rgba(0,0,0,0.08);
+}
+
+/* ---------------- Header ---------------- */
+/* .card-header {
+    padding: 22px 26px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    background: #fff;
+}
+
+.header-left {
+
+    height: 5.5rem;
+    flex:1;
+}
+
+.pf-logo {
+    height:5rem;
+    width: 40%;
+    margin-left:1rem;
+    object-fit: contain;
+    background: #ffffff; 
+    border-radius: 10px;
+} */
+ .card-header {
+    padding: 22px 26px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+}
+
+/* ---------------- Header Left Side ---------------- */
+.header-left {
+    display: flex;
+    align-items: center;
+    /* Removed padding-left so it aligns perfectly with the card edge if needed */
+    /* Or keep it if you like the indentation */
+    padding-left: 26px; 
+    flex: 1; /* Allows this section to take up available space */
+}
+
+/* ---------------- The Logo (Fixed Width) ---------------- */
+.pf-logo {
+    /* 1. FORCE SAME WIDTH FOR ALL */
+    width: 200px; 
+    
+    /* 2. Set a consistent height container */
+    height: 70px; 
+    
+    /* 3. Magic Property: Keeps aspect ratio, prevents stretching */
+    object-fit: contain; 
+    
+    /* 4. Align images to the left side of the "box" */
+    object-position: left center; 
+    
+    background: #ffffff;
+    border-radius: 8px;
+    
+    /* Optional: Smooth transition if you have hover effects */
+    transition: transform 0.3s ease;
+}
+
+/* Mobile Tweak: Make logos smaller on phones */
+@media (max-width: 768px) {
+    .pf-logo {
+        width: 140px; /* Smaller width for mobile */
+        height: 50px;
+    }
+    .arrow-icon {
+        margin-right: 0; /* Fix alignment on small screens */
+    }
+}
+
+/* ---------------- Arrow Button ---------------- */
+.arrow-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #f1f5f9;
+    color: #64748b;
+
+    /* 🔑 THE FIX */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transform-origin: center;
+    will-change: transform;
+    margin-right: 2rem;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+    transition:
+        transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+        background-color 0.2s ease,
+        box-shadow 0.2s ease,
+        color 0.2s ease;
+
+}
+
+
+/* Hover feedback */
+.card-header:hover .arrow-icon {
+    background: #e2e8f0;
+    color: #1e293b;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+}
+.profile-card.active .arrow-icon {
+    transform: rotate(180deg) scale(1.05);
+    background: #3b82f6;
+    color: #ffffff;
+    box-shadow: 0 8px 22px rgba(59,130,246,0.45);
+}
+/* =========================================
+   MODERN & CENTERED STAT CARD STYLING
+   ========================================= */
+
+.card-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    background: #ffffff; /* Keeping it clean white */
+    padding: 0 20px;
+}
+
+.profile-card.active .card-body {
+    max-height: 600px;
+    padding: 25px 20px;
+    border-top: 1px solid #f1f5f9;
+}
+
+/* 1. The Stats Container - Centers the content */
+.stats-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 320px; /* Brings items in from the edges */
+    margin: 0 auto;   /* Centers the block */
+}
+
+/* 2. The Rows - No longer "extreme ends" */
+.stat-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Space between label and value */
+    padding: 12px 16px;
+    background: #f8fafc; /* Very light blue-grey background */
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.stat-row:hover {
+    /* transform: translateY(-2px); */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    background: #ffffff;
+}
+
+/* 3. Labels - High Contrast & Clear */
+.stat-label {
+    color: #475569; /* Darker slate */
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* 4. Values - Bold & Prominent */
+.stat-value {
+    color: #1e293b; /* Deep Navy */
+    font-weight: 800;
+    font-size: 1rem;
+    font-family: 'Inter', system-ui, sans-serif;
+}
+
+/* 5. Handle Highlight - Special pill style */
+.handle-row {
+    background: linear-gradient(90deg, #4facfe, #9b59ff);
+    border: none;
+    margin-bottom: 8px;
+}
+.handle-row:hover {
+    background: linear-gradient(90deg, #4facfe, #9b59ff);
+    border: none;
+    margin-bottom: 8px;
+}
+.handle-row .stat-label {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.handle-row .stat-value {
+    color: #ffffff;
+    font-size: 1.1rem;
+}
+
+/* 6. Ratings - Color them if you want (Optional) */
+.rating-value {
+    color: #10b981; /* Success Green */
+}
+/*
+/* =========================================
+   ADD PROFILE / EMPTY STATE STYLING
+   ========================================= */
+
+/* The form container inside the card */
+.add-profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.add-profile-text {
+    color: #64748b;
+    font-size: 0.95rem;
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+/* The Input Field */
+.handle-input {
+    width: 80%;
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: 1px solid #cbd5e1;
+    background: #f8fafc;
+    color: #334155;
+    outline: none;
+    transition: all 0.3s ease;
+    margin-bottom: 10px;
+}
+
+.handle-input:focus {
+    border-color: #3b82f6;
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* The Save Button */
+.btn-save-handle {
+    padding: 8px 20px;
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.btn-save-handle:hover {
+    background: linear-gradient(90deg, #4facfe, #9b59ff);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+/* Special styling for the card header when empty */
+/* .profile-card.empty-state {
+    border: 2px dashed #cbd5e1; /* Dashed border indicates "missing" */
+} */
+
+.profile-card.empty-state .arrow-icon {
+    background: #e2e8f0;
+    color: #94a3b8;
+}
+
+/* Change arrow to a Plus sign when empty */
+.profile-card.empty-state .arrow-icon i::before {
+    content: "\f067"; /* FontAwesome Plus Icon code */
+}
+
+/* API Error State Styling */
+.api-error {
+    text-align: center;
+    padding: 30px 10px;
+    color: #ef4444; /* Red color */
+    background: rgba(239, 68, 68, 0.05);
+    border-radius: 12px;
+    margin: 10px 0;
+}
+
+.api-error i {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    opacity: 0.8;
+}
+
+.api-error p {
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.api-error small {
+    color: #94a3b8;
+}
+/* Container for the update button at the bottom of the list */
+.update-action-wrapper {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px dashed #e2e8f0;
+    display: flex;
+    justify-content: center;
+}
+
+/* Styled outline button */
+.btn-outline-update {
+    background: transparent;
+    border: 1px solid #6366f1;
+    color: #6366f1;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-outline-update:hover {
+    background: #6366f1;
+    color: white;
+}
+
+/* Form button grouping */
+.form-button-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.btn-cancel-small {
+    background: #f1f5f9;
+    color: #64748b;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.logout-wrapper {
+    margin-top: 40px;
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.btn-logout {
+    background-color: #ef4444; /* Clean Red */
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.btn-logout:hover {
+    background-color: #dd1515;
+    box-shadow: 0 10px 15px -3px rgba(239, 68, 68, 0.3);
+}
+
+.btn-logout i {
+    margin-right: 8px;
+}

@@ -1,0 +1,51 @@
+<% layout("/layout/boilerplate") %>
+
+<div class="auth-container">
+    <div class="auth-card">
+        <h2>Join CodeArena</h2>
+        <p>Create an account to track your progress</p>
+        
+        <form action="/signup" method="POST" novalidate class="needs-validation">
+            <div class="form-group">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" id="username" name="username" class="form-control-custom" placeholder="Choose a username" required>
+                <div class="invalid-feedback">Please enter valid username</div>
+            </div>
+
+            <div class="form-group">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" id="email" name="email" class="form-control-custom" placeholder="Enter your email" required>
+                <div class="invalid-feedback">Please enter valid email</div>
+            </div>
+            
+            <div class="form-group">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" id="password" name="password" class="form-control-custom" placeholder="Create a strong password" required>
+                <div class="invalid-feedback">Please enter valid data</div>
+            </div>
+            
+            <button type="submit" class="btn-auth">Sign Up</button>
+        </form>
+        
+        <div class="auth-footer">
+            Already have an account? <a href="/login">Login</a>
+        </div>
+    </div>
+</div>
+<script>
+(() => {
+  'use strict';
+
+  const forms = document.querySelectorAll('.needs-validation');
+
+  forms.forEach(form => {
+    form.addEventListener('submit', event => {
+      if (!form.checkValidity()) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+      form.classList.add('was-validated');
+    });
+  });
+})();
+</script>

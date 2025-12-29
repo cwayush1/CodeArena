@@ -1,0 +1,75 @@
+<%layout("/layout/boilerplate")%>
+<div class="container col-lg-8 mx-auto">
+
+  <div class="platform">
+    <h2>
+      <img src="/assets/Screenshot 2025-12-26 162049.png" alt="Codeforces"> 
+    </h2>
+    <div class="cards-container  ">
+      <% for(let contest of separated[0]) { %>
+        <div class="card ">
+          <h3><%= contest.title %></h3>
+          <% if(new Date()<new Date(contest.startTime)){%>
+            <p><b>Date: </b><%= new Date(contest.startTime).toLocaleDateString() %></p>
+            <p><b>Time:</b> <%= new Date(contest.startTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) %></p>
+  
+            <%} else {%>
+              <span class="status live">
+                <span class="live-dot"></span> LIVE
+            </span>
+        <% } %>
+          <a href="<%= contest.url %>" target="_blank" class="contest-btn">View Contest</a>
+        </div>
+      <% } %>
+    </div>
+  </div>
+
+  <div class="platform">
+    <h2>
+      <img src="https://cdn.codechef.com/images/cc-logo.svg" alt="CodeChef"> 
+    </h2>
+    <div class="cards-container">
+      <% for(let contest of separated[1]) { %>
+        <div class="card">
+          <h3><%= contest.title %></h3>
+          <p><b>Date:</b> <%= new Date(contest.startTime).toLocaleDateString() %></p>
+          <p><b>Time: </b><%= new Date(contest.startTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) %></p>
+          <a href="<%= contest.url %>" target="_blank" class="contest-btn">View Contest</a>
+        </div>
+      <% } %>
+    </div>
+  </div>
+
+  <div class="platform">
+    <h2>
+        <img src="/assets/image.png" alt="LeetCode">
+    </h2>
+    <div class="cards-container">
+      <% for(let contest of separated[2]) { %>
+        <div class="card">
+          <h3><%= contest.title %></h3>
+          <p><b>Date: </b><%= new Date(contest.startTime).toLocaleDateString() %></p>
+          <p><b>Time: </b><%= new Date(contest.startTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) %></p>
+          <a href="<%= contest.url %>" target="_blank" class="contest-btn">View Contest</a>
+        </div>
+      <% } %>
+    </div>
+  </div>
+
+  <div class="platform">
+    <h2>
+      <img src="/assets/Screenshot 2025-12-22 193000.png" alt="AtCoder"> 
+    </h2>
+    <div class="cards-container">
+      <% for(let contest of separated[3]) { %>
+        <div class="card">
+          <h3><%= contest.title %></h3>
+          <p><b>Date:</b><%= new Date(contest.startTime).toLocaleDateString() %></p>
+          <p><b>Time:</b> <%= new Date(contest.startTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) %></p>
+          <a href="<%= contest.url %>" target="_blank" class="contest-btn">View Contest</a>
+        </div>
+      <% } %>
+    </div>
+  </div>
+
+</div>
