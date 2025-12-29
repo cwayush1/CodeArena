@@ -89,7 +89,9 @@ app.use((req,res,next)=>{
 });
 
 
-
+app.get("/",(req,res)=>{
+  res.redirect("/api/codearena");
+});
 app.get("/api/codearena", async(req, res) => {
   let url1= "https://competeapi.vercel.app/contests/upcoming/";
   let url2= "https://contest-hive.vercel.app/api/atcoder";
